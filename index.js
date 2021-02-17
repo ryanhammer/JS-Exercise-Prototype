@@ -109,10 +109,14 @@ Car.prototype.fill = function(gallons) {
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    
+    1. Principle one is that within the global Javascript scope, 'this' will return/refer to the value of the console...that is, an object containing everything that is Javascript.
+
+    2. The second principle is an implicit binding of 'this' which binds/points 'this' to whatever was called using a preceding dot. That is, 'this' will point to whatever is to the left of the dot when a preceding dot is used to call a function that contains 'this'.
+
+    3. A new binding typically refers to use of 'this' within a constructor funtcion. The constructor function is used to create an object when it is called using 'new'...when this happens, 'this' points to the object that is being created by joining 'new' with the constructor function.
+
+    4. Lastly, we can specifically point 'this' at objects using .call or .apply functions. This is called explicit binding. Using .apply is appropriate if we are pointing at an array.
   */
   
   
