@@ -46,7 +46,7 @@ function Airplane(name) {
   }
 
   Person.prototype.eat = function(someFood) {
-      if (someFood === 'edible' && this.stomack.length < 10) {
+      if (this.stomach.length < 10) {
         this.stomach.push(someFood);
       }
   }
@@ -59,8 +59,7 @@ function Airplane(name) {
       return `${this.name}, ${this.age}`;
   }
  
- 
-  
+
   
   /*
     TASK 2
@@ -76,9 +75,16 @@ function Airplane(name) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
-  }
+ function Car(model, mpg) {
+    this.model = model;
+    this.milesPerGallon = mpg;
+    this.tank = 0;
+    this.odometer = 0;
+}
+
+Car.prototype.fill = function(gallons) {
+    this.tank += gallons;
+}
   
   
   /*
