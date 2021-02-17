@@ -39,15 +39,27 @@ function Airplane(name) {
           + It should return a string with `name` and `age`. Example: "Mary, 50"
   */
   
- function Person() {
-    
+ function Person(name, age) {
+    this.name = name;
+    this.age = age;
+    this.stomach = [];
+  }
+
+  Person.prototype.eat = function(someFood) {
+      if (this.stomach.length < 10) {
+        this.stomach.push(someFood);
+      }
   }
  
+  Person.prototype.poop = function() {
+      this.stomach = [];
+  }
+
+  Person.prototype.toString = function() {
+      return `${this.name}, ${this.age}`;
+  }
  
 
-  
-  
-  
   
   /*
     TASK 2
@@ -63,9 +75,29 @@ function Airplane(name) {
           + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
   */
   
- function Car() {
-    
-  }
+ function Car(model, mpg) {
+    this.model = model;
+    this.milesPerGallon = mpg;
+    this.tank = 0;
+    this.odometer = 0;
+}
+
+Car.prototype.fill = function(gallons) {
+    this.tank += gallons;
+}
+
+Car.prototype.drive = function(distance) {
+    let tankCapacity = this.tank * this.milesPerGallon;
+    if (distance > tankCapacity) {
+        this.odometer += tankCapacity;
+        this.tank = 0;
+        return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+    else {
+        this.odometer += distance;
+        this.tank -= (distance / this.milesPerGallon);
+    }
+}
   
   
   /*
@@ -75,18 +107,29 @@ function Airplane(name) {
       - Besides the methods on Person.prototype, babies have the ability to `.play()`:
           + Should return a string "Playing with x", x being the favorite toy.
   */
- function Baby() {
-   
+ function Baby(babyName, babyAge, toy) {
+    Person.call(this, babyName, babyAge);
+    this.favoriteToy = toy;
+  }
+
+  Baby.prototype = Object.create(Person.prototype);
+
+  Baby.prototype.play = function() {
+      return `Playing with ${this.favoriteToy}`;
   }
  
   
   /* 
     TASK 4
     In your own words explain the four principles for the "this" keyword below:
-    1. 
-    2. 
-    3. 
-    4. 
+    
+    1. Principle one is that within the global Javascript scope, 'this' will return/refer to the value of the console...that is, an object containing everything that is Javascript.
+
+    2. The second principle is an implicit binding of 'this' which binds/points 'this' to whatever was called using a preceding dot. That is, 'this' will point to whatever is to the left of the dot when a preceding dot is used to call a function that contains 'this'.
+
+    3. A new binding typically refers to use of 'this' within a constructor funtcion. The constructor function is used to create an object when it is called using 'new'...when this happens, 'this' points to the object that is being created by joining 'new' with the constructor function.
+
+    4. Lastly, we can specifically point 'this' at objects using .call or .apply functions. This is called explicit binding. Using .apply is appropriate if we are pointing at an array.
   */
   
   
