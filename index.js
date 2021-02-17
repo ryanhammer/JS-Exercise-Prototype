@@ -85,6 +85,19 @@ function Airplane(name) {
 Car.prototype.fill = function(gallons) {
     this.tank += gallons;
 }
+
+Car.prototype.drive = function(distance) {
+    let tankCapacity = this.tank * this.milesPerGallon;
+    if (distance > tankCapacity) {
+        this.odometer += tankCapacity;
+        this.tank = 0;
+        return `I ran out of fuel at ${this.odometer} miles!`;
+    }
+    else {
+        this.odometer += distance;
+        this.tank -= (distance / this.milesPerGallon);
+    }
+}
   
   
   /*
